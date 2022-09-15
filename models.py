@@ -29,4 +29,3 @@ class User_Update_Requests(BaseModel):
     last_name: Optional[str]
     middle_name: Optional[str]
     roles: Optional[List[Role]]
-    
