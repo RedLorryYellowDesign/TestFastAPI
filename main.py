@@ -77,3 +77,4 @@ async def update_user(user_update: User_Update_Requests, user_id: UUID):
         status_code=404,
         details=f"User with id: {user_id} not found"
         )
+    
