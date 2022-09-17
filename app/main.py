@@ -3,7 +3,7 @@
 from typing import List
 from uuid import UUID, uuid4
 from fastapi import FastAPI, HTTPException
-from models import User, User_Update_Requests, Role, Gender
+from app.models import User, User_Update_Requests, Role, Gender
 app = FastAPI()
 
 # ---| API END POINT |---
@@ -77,4 +77,3 @@ async def update_user(user_update: User_Update_Requests, user_id: UUID):
         status_code=404,
         details=f"User with id: {user_id} not found"
         )
-    
