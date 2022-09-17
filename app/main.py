@@ -77,3 +77,7 @@ async def update_user(user_update: User_Update_Requests, user_id: UUID):
         status_code=404,
         details=f"User with id: {user_id} not found"
         )
+
+@app.get("/model/predict")
+def check():
+    return {"prediction": "Hello World. This is the Team Energy API. Please use the API keys below to call the API."}
