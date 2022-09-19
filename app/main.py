@@ -78,6 +78,33 @@ async def update_user(user_update: User_Update_Requests, user_id: UUID):
         details=f"User with id: {user_id} not found"
         )
 
-@app.get("/model/predict")
-def check():
-    return {"prediction": "Hello World. This is the Team Energy API. Please use the API keys below to call the API."}
+
+# Send imputs to the API
+@app.post("/model/RNN_predict")
+async def create_user(user: User):
+    
+    filename = f'RNNmodel_{name}_{tariff}'
+    m = joblib.load(filename)
+    print('model loaded succcessfully')
+    
+
+
+print('input name')
+name = input()
+print('input tariff: Std or ToU')
+tariff = input()
+
+
+
+
+# Predict
+def forecast_model(m,X_test,sc):
+    predicted_consumption = m.predict(X_test)
+    predicted_consumption = sc.inverse_transform(predicted_consumption)
+    return predicted_consumption
+
+# Evaluate model
+def evaluate(test_set,predicted_consumption):
+    mape = mean_absolute_percentage_error(test_set,predicted_consumption)
+    print("The  mean absolute percenatge error is {}.".format(mape))
+    return mape
